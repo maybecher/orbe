@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(& \"C:\\\\flutter\\\\bin\\\\flutter.bat\" analyze 2>&1)",
+      "PowerShell(& \"C:\\\\flutter\\\\bin\\\\flutter.bat\" run -d chrome --web-port=5599 2>&1 | Tee-Object -FilePath \"$env:TEMP\\\\orbe_run.log\")",
+      "Read(//c/flutter/bin/internal/**)",
+      "Read(//c/flutter/bin/cache/**)",
+      "Bash(python -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(magick -version)",
+      "Bash(npm --version)",
+      "Read(//c//**)",
+      "Bash(mkdir -p /tmp/orbe_logo_tool)",
+      "Read(//tmp/**)",
+      "Bash(npm install *)",
+      "Bash(ls /tmp/orbe_logo_tool/node_modules 2>/dev/null | grep -i sharp)",
+      "Read(//tmp/orbe_logo_tool/**)",
+      "Bash(node remove_bg.js \"c:/Users/senai.DSN101XXXXXXX/OneDrive - SESISENAISP - Corporativo/Documentos/projects/orbe/lib/assets/images/logo_orbe.png\" \"c:/Users/senai.DSN101XXXXXXX/OneDrive - SESISENAISP - Corporativo/Documentos/projects/orbe/lib/assets/images/logo_orbe_transparent.png\")",
+      "Bash(ls -la \"/c/Users/senai.DSN101XXXXXXX/AppData/Local/Temp/orbe_logo_tool\" 2>&1)",
+      "Read(//c/Users/senai.DSN101XXXXXXX/AppData/Local/Temp/orbe_logo_tool/**)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 5599,5600,5601,5602 -State Listen -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Process dart -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Process -Id 1600 -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Id 1600 -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Process dart,OneDrive -ErrorAction SilentlyContinue)",
+      "Bash(grep -n \"class DropdownButtonFormField\" -A 30 \"/c/flutter/packages/flutter/lib/src/material/dropdown.dart\" | grep -E \"this\\\\.value|this\\\\.initialValue|required.*value|@Deprecated\" | head -20)",
+      "Read(//c/flutter/packages/flutter/lib/src/material/**)",
+      "PowerShell(& \"C:\\\\flutter\\\\bin\\\\flutter.bat\" test 2>&1)",
+      "Bash(RP=\"/c/Users/senai.DSN101XXXXXXX/AppData/Local/Pub/Cache/hosted/pub.dev/riverpod-3.3.2\" *)",
+      "Read(//c/Users/senai.DSN101XXXXXXX/AppData/Local/Pub/Cache/hosted/pub.dev/riverpod-3.3.2/lib/**)"
+    ],
+    "additionalDirectories": [
+      "\\tmp\\orbe_logo_tool",
+      "C:\\Users\\senai.DSN101XXXXXXX\\AppData\\Local\\Temp\\orbe_logo_tool"
+    ]
+  }
+}
