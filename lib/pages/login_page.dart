@@ -107,8 +107,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     _RegisterPrompt(
                       onTap: () => context.push(AppRoutes.register),
                     ),
-                    const SizedBox(height: 16),
-                    const _DemoHint(),
                   ],
                 ),
               ),
@@ -162,26 +160,6 @@ class _RegisterPrompt extends StatelessWidget {
         Text('Não tem conta?', style: Theme.of(context).textTheme.bodyMedium),
         TextButton(onPressed: onTap, child: const Text('Cadastre-se')),
       ],
-    );
-  }
-}
-
-class _DemoHint extends StatelessWidget {
-  const _DemoHint();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        'Conta demo — demo@orbe.com / 123456',
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.bodyMedium,
-      ),
     );
   }
 }

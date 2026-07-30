@@ -1,3 +1,6 @@
+# Local dev tool settings (permissions, machine-specific paths)
+.claude/
+
 # Miscellaneous
 *.class
 *.log

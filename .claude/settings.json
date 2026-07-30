@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(& \"C:\\\\flutter\\\\bin\\\\flutter.bat\" test 2>&1)",
-      "PowerShell(& \"C:\\\\flutter\\\\bin\\\\flutter.bat\" analyze 2>&1)"
-    ]
-  }
-}
