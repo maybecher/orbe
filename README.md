@@ -34,13 +34,62 @@ alterar a camada de UI.
 | Câmera/Galeria | [image_picker](https://pub.dev/packages/image_picker) |
 | Perfis de demonstração | API pública [randomuser.me](https://randomuser.me) |
 
+## Boas práticas aplicadas
+
+- **Repository pattern com interfaces abstratas** — cada fonte de dados (contas,
+  chamados, comentários, categorias, perfil externo) é definida como uma interface
+  (`AuthRepository`, `TicketRepository`, ...) implementada hoje por uma versão mock
+  em memória. Trocar por Firebase ou outro backend no futuro não exige tocar em
+  providers, telas ou widgets — só a implementação por trás da interface.
+- **Separação clara de responsabilidades** — `models/` (entidades de domínio),
+  `services/` (acesso a dados), `providers/` (estado), `pages/` (telas), `widgets/`
+  (componentes reutilizáveis) e `styles/` (tema) nunca se misturam.
+- **Gerenciamento de estado reativo com Riverpod** — `AsyncNotifier` cuida de
+  loading/erro/sucesso automaticamente; as telas só reagem ao estado, sem lógica
+  assíncrona duplicada.
+- **Design system centralizado** — cores, tipografia e tema vivem só em `styles/`;
+  nenhuma tela usa cor ou fonte "no chute".
+- **Componentes reutilizáveis de verdade** — `CustomButton`, `CustomTextField`,
+  `TicketCard`, `StatusBadge`, `CommentsList` etc. são usados em várias telas,
+  evitando duplicação de UI.
+- **Navegação declarativa e protegida por papel** — GoRouter com `redirect`
+  automático: uma conta de usuário comum nunca alcança rotas de administrador, e
+  vice-versa, sem precisar de checagem manual em cada tela.
+- **Resiliência a falhas de rede** — quando a API externa (randomuser.me) falha ou
+  está indisponível, a UI cai de volta para um estado padrão (iniciais no lugar da
+  foto) em vez de quebrar.
+- **Código limpo e verificado** — `flutter analyze` sem nenhum aviso, e testes
+  automatizados cobrindo o fluxo de autenticação.
+
 ## Como rodar
 
 ```bash
 flutter pub get
-flutter run -d chrome     # Web
-flutter run                # Android/iOS conectado
 ```
+
+**Web:**
+
+```bash
+flutter run -d chrome
+```
+
+**Dispositivo físico conectado (Android/iOS):**
+
+```bash
+flutter run
+```
+
+**Emulador Android:**
+
+```bash
+flutter emulators                      # lista os emuladores instalados
+flutter emulators --launch <id>        # abre o emulador escolhido (ex: Pixel_9)
+flutter devices                        # confirma que o emulador aparece como device
+flutter run -d emulator-5554           # roda o app nele
+```
+
+Se nenhum emulador aparecer, crie um pelo **Android Studio → Device Manager** (ou
+via `avdmanager`, da Android SDK) e rode `flutter emulators` novamente.
 
 ## Contas de acesso
 
@@ -75,8 +124,10 @@ para a área correta (usuário comum ou administrador) de acordo com o papel da 
 
 #### Cadastro
 
-<img src="docs/screenshots/register-form.png" alt="Tela de Cadastro" width="280" />
-<img src="docs/screenshots/register.png" alt="Cadastro com usuário gerado pela API" width="280" />
+<p align="center">
+<img src="docs/screenshots/register-form.png" alt="Tela de Cadastro" width="260" />
+<img src="docs/screenshots/register.png" alt="Cadastro com usuário gerado pela API" width="260" />
+</p>
 
 Cria uma nova conta de usuário comum. O botão **"Gerar usuário da API"** busca uma
 pessoa aleatória em randomuser.me e preenche automaticamente nome e e-mail (editáveis,
@@ -85,6 +136,8 @@ segunda imagem); essa identidade — incluindo foto, telefone e localização �
 de Perfil. A senha é sempre escolhida por quem se cadastra.
 
 #### Recuperar senha
+
+<img src="docs/screenshots/forgot-password.png" alt="Tela de recuperação de senha" width="280" />
 
 Fluxo simulado de recuperação: informa o e-mail e recebe a confirmação de envio do
 link (não há envio real de e-mail, é um mock).
@@ -119,6 +172,8 @@ prioridade, descrição e uma foto opcional anexada pela câmera ou pela galeria
 dispositivo.
 
 #### Detalhe do chamado
+
+<img src="docs/screenshots/ticket-detail.png" alt="Detalhe do chamado com comentários" width="280" />
 
 Mostra todas as informações do chamado (incluindo a foto anexada, se houver) e um
 chat de comentários entre o usuário e o técnico responsável. Quando o chamado é
