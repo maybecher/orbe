@@ -75,17 +75,16 @@ para a área correta (usuário comum ou administrador) de acordo com o papel da 
 
 #### Cadastro
 
-<img src="docs/screenshots/register.png" alt="Tela de Cadastro" width="280" />
+<img src="docs/screenshots/register-form.png" alt="Tela de Cadastro" width="280" />
+<img src="docs/screenshots/register.png" alt="Cadastro com usuário gerado pela API" width="280" />
 
 Cria uma nova conta de usuário comum. O botão **"Gerar usuário da API"** busca uma
-pessoa aleatória em randomuser.me e preenche automaticamente nome e e-mail (editáveis);
-essa identidade — incluindo foto, telefone e localização — fica **permanentemente
-vinculada** à conta a partir do cadastro, e aparece depois na tela de Perfil. A senha
-é sempre escolhida por quem se cadastra.
+pessoa aleatória em randomuser.me e preenche automaticamente nome e e-mail (editáveis,
+segunda imagem); essa identidade — incluindo foto, telefone e localização — fica
+**permanentemente vinculada** à conta a partir do cadastro, e aparece depois na tela
+de Perfil. A senha é sempre escolhida por quem se cadastra.
 
 #### Recuperar senha
-
-<img src="docs/screenshots/forgot-password.png" alt="Tela de recuperação de senha" width="280" />
 
 Fluxo simulado de recuperação: informa o e-mail e recebe a confirmação de envio do
 link (não há envio real de e-mail, é um mock).
@@ -120,8 +119,6 @@ prioridade, descrição e uma foto opcional anexada pela câmera ou pela galeria
 dispositivo.
 
 #### Detalhe do chamado
-
-<img src="docs/screenshots/ticket-detail.png" alt="Detalhe do chamado com comentários" width="280" />
 
 Mostra todas as informações do chamado (incluindo a foto anexada, se houver) e um
 chat de comentários entre o usuário e o técnico responsável. Quando o chamado é
